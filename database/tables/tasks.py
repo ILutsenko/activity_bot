@@ -1,10 +1,10 @@
 from sqlalchemy import (
+    BigInteger,
     Column,
     String,
-    BigInteger,
 )
 
-from database import base
+from database.declarative_base import base
 
 
 class TaskTable(base):

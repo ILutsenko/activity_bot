@@ -1,17 +1,10 @@
-import logging
+from aiogram.utils import executor
 
 from app import (
-    dispatcher,
-    executor,
     db_executor,
-    register_handlers,
+    dispatcher,
 )
-
-logging.basicConfig(
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
-)
-logger = logging.getLogger(__name__)
-
+from handlers.utils import register_handlers
 
 if __name__ == '__main__':
     register_handlers(dispatcher)

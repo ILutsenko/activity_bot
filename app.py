@@ -1,36 +1,13 @@
 from aiogram import (
     Bot,
     Dispatcher,
-    executor,
 )
+from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from sqlalchemy import create_engine
 from sqlalchemy.engine.url import URL
 
 from activity_bot.config import config
-from database.sql_executor import DatabaseExecutor
-from aiogram.contrib.fsm_storage.memory import MemoryStorage
-from aiogram.dispatcher.filters.state import (
-    StatesGroup,
-    State,
-)
-from activity_bot.handlers import (
-    tasks,
-    create_task,
-    create_new_task,
-    start_handler,
-)
-
-
-class FSMAdmin(StatesGroup):
-    task_name = State()
-
-
-def register_handlers(dp: Dispatcher) -> None:
-    dp.register_message_handler(tasks, commands=['Задачи'])
-    dp.register_message_handler(create_task, commands=['Создать_задачу'], state=None)
-    dp.register_message_handler(create_new_task, state=FSMAdmin.task_name)
-    dp.register_message_handler(start_handler, commands=['start', 'help'])
-
+from database.db_executor import DatabaseExecutor
 
 url = URL.create(
     drivername='postgresql',
@@ -51,9 +28,7 @@ db_executor = DatabaseExecutor(engine=engine)
 
 __all__ = (
     'bot',
-    'FSMAdmin',
     'db_executor',
     'dispatcher',
-    'executor',
     'engine',
 )

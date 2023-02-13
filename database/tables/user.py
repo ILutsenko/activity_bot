@@ -1,10 +1,10 @@
 from sqlalchemy import (
-    Column,
     BigInteger,
+    Column,
     String,
 )
 
-from database import base
+from database.declarative_base import base
 
 
 class UserTable(base):

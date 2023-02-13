@@ -1,5 +1,5 @@
-from database.declarative_base import base
+from database.db_executor import DatabaseExecutor
 
 __all__ = (
-    'base',
+    'DatabaseExecutor',
 )
