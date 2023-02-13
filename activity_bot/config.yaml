@@ -1,0 +1,9 @@
+telegram_settings:
+  token: 5851173735:AAGoM_tmG5J-hRbBb7rJSiiD29C0TwnmrAU
+
+database:
+  username: root
+  password: root
+  host: database
+  port: 5432
+  database: bot_db
