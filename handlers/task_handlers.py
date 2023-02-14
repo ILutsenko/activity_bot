@@ -6,7 +6,6 @@ from aiogram.types import Message
 from app import (
     bot,
     db_executor,
-    dispatcher,
 )
 from handlers.utils import FSMAdmin
 
