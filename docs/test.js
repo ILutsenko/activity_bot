@@ -1,8 +1,17 @@
 let tg = window.Telegram.WebApp;
 
-tg.expand(); //расширяем на все окно
+tg.expand();
 
 let task_button = document.getElementById("task_button");
+
+
+let usercard = document.getElementById("usercard")
+let p = document.createElement("p")
+
+tg.initDataUnsafe.full_name
+p.innerText = '${tg.initDataUnsafe.full_name} and ${tg.initDataUnsafe.user.id}'
+
+usercard.appendChild(p)
 
 task_button.addEventListener('click', function(){
 	myFunction()
