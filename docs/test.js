@@ -3,13 +3,14 @@ let tg = window.Telegram.WebApp;
 tg.expand();
 
 let task_button = document.getElementById("task_button");
+alert(task_button)
 
 
 let usercard = document.getElementById("usercard")
 let p = document.createElement("p")
 
 tg.initDataUnsafe.full_name
-p.innerText = '${tg.initDataUnsafe.full_name} and ${tg.initDataUnsafe.user.id}'
+p.innerText = '${tg.initDataUnsafe.user.full_name} and ${tg.initDataUnsafe.user.id}'
 
 usercard.appendChild(p)
 
