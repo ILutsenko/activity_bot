@@ -1,7 +1,10 @@
 import logging
 
 from aiogram.dispatcher import FSMContext
-from aiogram.types import Message
+from aiogram.types import (
+    Message,
+    ParseMode,
+)
 
 from app import (
     bot,
@@ -19,13 +22,12 @@ logger = logging.getLogger(__name__)
 async def tasks(message: Message):
     user = message.from_user
     logger.info(f'{user.id}: {user.full_name} ---список задач')
-    all_tasks = "\n".join([
-        f'{num}) {task.task_name}'
-        for num, task in enumerate(
-            db_executor.show_all_tasks(message.from_user.id), 1,
-        )
-    ])
-    await bot.send_message(message.from_user.id, f'Ваш список задач: \n{all_tasks}')
+    all_tasks = db_executor.show_all_tasks(message.from_user.id)
+    await bot.send_message(
+        message.from_user.id,
+        f'Data:\n<pre>\n{all_tasks}\n</pre>',
+        parse_mode=ParseMode.HTML,
+    )
 
 
 async def create_task(message: Message):

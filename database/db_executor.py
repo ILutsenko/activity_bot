@@ -1,6 +1,7 @@
 import datetime
 import logging
 
+from pandas import read_sql
 from sqlalchemy import Engine
 from sqlalchemy.orm import sessionmaker
 
@@ -30,9 +31,17 @@ class DatabaseExecutor:
 
     def show_all_tasks(self, user_id: int):
         session = self._get_session()()
-        return session.query(TaskTable).filter(
+        columns = ['Номер задачи', 'Задача', 'Статус']
+        query = session.query(
+            TaskTable.task_id,
+            TaskTable.task_name,
+            TaskTable.status,
+        ).filter(
             TaskTable.user_id == user_id
-        ).all()
+        )
+        dataframe = read_sql(sql=query.statement, con=self._engine.connect())
+        dataframe.columns = columns
+        return dataframe.to_markdown(index=False)
 
     def create_task(
             self,
