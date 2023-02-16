@@ -1,21 +1,13 @@
 let tg = window.Telegram.WebApp;
 
 tg.expand();
+tg.MainButton.show()
 
 let task_button = document.getElementById("task_button");
-alert(task_button)
-
-
-let usercard = document.getElementById("usercard")
-let p = document.createElement("p")
-
-tg.initDataUnsafe.full_name
-p.innerText = '${tg.initDataUnsafe.user.full_name} and ${tg.initDataUnsafe.user.id}'
-
-usercard.appendChild(p)
 
 task_button.addEventListener('click', function(){
-    alert([tg.initDataUnsafe.user.full_name, tg.initDataUnsafe.user.id])
+    tg.MainButton.setText(`Кнопка нажата юзером ${tg.initDataUnsafe.user.id}`)
+    alert([tg.initDataUnsafe.user.last_name, tg.initDataUnsafe.user.id])
 });
 
 
