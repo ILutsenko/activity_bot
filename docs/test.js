@@ -14,7 +14,7 @@ p.innerText = '${tg.initDataUnsafe.full_name} and ${tg.initDataUnsafe.user.id}'
 usercard.appendChild(p)
 
 task_button.addEventListener('click', function(){
-	myFunction()
+	alert('${tg.initDataUnsafe.full_name} and ${tg.initDataUnsafe.user.id}')
 });
 
 
