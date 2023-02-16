@@ -31,17 +31,19 @@ class DatabaseExecutor:
 
     def show_all_tasks(self, user_id: int):
         session = self._get_session()()
-        columns = ['Номер задачи', 'Задача', 'Статус']
         query = session.query(
             TaskTable.task_id,
             TaskTable.task_name,
             TaskTable.status,
-        ).filter(
-            TaskTable.user_id == user_id
-        )
-        dataframe = read_sql(sql=query.statement, con=self._engine.connect())
-        dataframe.columns = columns
-        return dataframe.to_markdown(index=False)
+        ).filter(TaskTable.user_id == user_id)
+        result = {
+            task_id: {
+                'task_name': task_name,
+                'status': status,
+            }
+            for task_id, task_name, status in query
+        }
+        return result
 
     def create_task(
             self,

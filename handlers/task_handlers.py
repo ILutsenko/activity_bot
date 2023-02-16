@@ -25,8 +25,8 @@ async def tasks(message: Message):
     all_tasks = db_executor.show_all_tasks(message.from_user.id)
     await bot.send_message(
         message.from_user.id,
-        f'Data:\n<pre>\n{all_tasks}\n</pre>',
-        parse_mode=ParseMode.HTML,
+        f'```\n{all_tasks}\n```',
+        parse_mode=ParseMode.MARKDOWN_V2,
     )
 
 

@@ -27,4 +27,4 @@ def register_handlers(dp: Dispatcher) -> None:
         state='*',
     )
     dp.register_message_handler(create_new_task, state=FSMAdmin.task_name)
-    dp.register_message_handler(start_handler, commands=['start', 'help'])
+    dp.register_message_handler(start_handler)

@@ -12,3 +12,10 @@
     color: white;
     background-color: black;
 }
+
+#printHere {
+  position: absolute;
+  top: 15%;
+  left: 6%;
+  font-size: 5vw;
+ }
