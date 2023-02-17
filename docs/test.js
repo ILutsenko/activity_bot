@@ -50,6 +50,7 @@ function addButtons(element){
 }
 
 function createDetailsTag(element = NaN){
+    alert(`user_id: ${tg.initDataUnsafe.user.id}`)
     get_tasks(url, {user_id: tg.initDataUnsafe.user.id}).then(tasks_group => {
         if (!tasks_group){
             alert("У вас нет открытых задач")
