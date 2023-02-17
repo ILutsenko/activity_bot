@@ -1,14 +1,15 @@
 let tg = window.Telegram.WebApp;
 const url = "http://80.78.248.142:80"
 let task_button = document.getElementById("task_button");
-alert(`user_id: ${tg.initDataUnsafe.user.id}`)
 
 
 task_button.addEventListener('click', function(){
+    alert('event_called')
     const form = document.getElementById('form');
     const formData = new FormData(form);
     let task_name = formData.get('text1')
     post(`${url}/task`, {user_id: tg.initDataUnsafe.user.id, task_name: task_name})
+    alert('event_ended')
 });
 
 const post = async (url, params) => {
@@ -29,7 +30,6 @@ const post = async (url, params) => {
     var container = document.getElementById("task_list_id");
     var content = container.innerHTML;
     container.innerHTML= content;
-    document.location.reload()
     alert('Задача успешно создана')
 }
 
@@ -51,7 +51,6 @@ function addButtons(element){
 }
 
 function createDetailsTag(element = NaN){
-    alert(`user_id: ${tg.initDataUnsafe.user.id}`)
     get_tasks(url, {user_id: tg.initDataUnsafe.user.id}).then(tasks_group => {
         if (!tasks_group){
             alert("У вас нет открытых задач")
