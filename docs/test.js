@@ -1,5 +1,6 @@
 let tg = window.Telegram.WebApp;
 const url = "http://80.78.248.142:80"
+alert(`user_id: ${tg.initDataUnsafe.user.id}`)
 let task_button = document.getElementById("task_button");
 
 
