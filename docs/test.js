@@ -1,15 +1,14 @@
 let tg = window.Telegram.WebApp;
 const url = "http://80.78.248.142:80"
-alert(`user_id: ${tg.initDataUnsafe.user.id}`)
 let task_button = document.getElementById("task_button");
+alert(`user_id: ${tg.initDataUnsafe.user.id}`)
 
 
 task_button.addEventListener('click', function(){
-    alert(tg.initDataUnsafe.user.id)
-    // const form = document.getElementById('form');
-    // const formData = new FormData(form);
-    // let task_name = formData.get('text1')
-    // post(`${url}/task`, {user_id: tg.initDataUnsafe.user.id, task_name: task_name})
+    const form = document.getElementById('form');
+    const formData = new FormData(form);
+    let task_name = formData.get('text1')
+    post(`${url}/task`, {user_id: tg.initDataUnsafe.user.id, task_name: task_name})
 });
 
 const post = async (url, params) => {
@@ -74,4 +73,4 @@ function createDetailsTag(element = NaN){
         }
     })
 }
-// createDetailsTag()
+createDetailsTag()
