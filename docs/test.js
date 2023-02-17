@@ -5,10 +5,11 @@ let task_button = document.getElementById("task_button");
 
 
 task_button.addEventListener('click', function(){
-    const form = document.getElementById('form');
-    const formData = new FormData(form);
-    let task_name = formData.get('text1')
-    post(`${url}/task`, {user_id: tg.initDataUnsafe.user.id, task_name: task_name})
+    alert(tg.initDataUnsafe.user.id)
+    // const form = document.getElementById('form');
+    // const formData = new FormData(form);
+    // let task_name = formData.get('text1')
+    // post(`${url}/task`, {user_id: tg.initDataUnsafe.user.id, task_name: task_name})
 });
 
 const post = async (url, params) => {
@@ -73,4 +74,4 @@ function createDetailsTag(element = NaN){
         }
     })
 }
-createDetailsTag()
+// createDetailsTag()
