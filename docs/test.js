@@ -24,6 +24,7 @@ const post = async (url, params) => {
         response => console.log(response)
     )
     createDetailsTag(params.task_name)
+    // tg.reload()
     var container = document.getElementById("task_list_id");
     var content = container.innerHTML;
     container.innerHTML= content;
