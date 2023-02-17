@@ -1,46 +1,73 @@
-let tg = window.Telegram.WebApp;
-
-tg.expand();
-tg.MainButton.show()
 const url = "http://80.78.248.142:80"
-
 let task_button = document.getElementById("task_button");
 
+
 task_button.addEventListener('click', function(){
-    tg.MainButton.setText(`Кнопка нажата юзером ${tg.initDataUnsafe.user.id}`)
-    alert([tg.initDataUnsafe.user.last_name, tg.initDataUnsafe.user.id])
+    const form = document.getElementById('form');
+    const formData = new FormData(form);
+    let task_name = formData.get('text1')
+    post(`${url}/task`, {user_id: 492323696, task_name: task_name})
 });
 
-
-
-// function myFunction() {
-//     let user_id = tg.initDataUnsafe.user.id
-//     let x = new XMLHttpRequest();
-//       x.open("GET", "http://80.78.248.142:80", true);
-//       x.onload = function (){
-//           alert( x.responseText);
-//       }
-//       x.send(null);
-// }
-
+const post = async (url, params) => {
+    console.log(JSON.stringify(params))
+    let post_url = url + '?' + new URLSearchParams(params)
+    fetch(post_url, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        // body: JSON.stringify(params)
+    }).then(response => response).then(
+        response => console.log(response)
+    )
+    createDetailsTag(params.task_name)
+    var container = document.getElementById("task_list_id");
+    var content = container.innerHTML;
+    container.innerHTML= content;
+    document.location.reload()
+    alert('Задача успешно создана')
+}
 
 const get = async (url, params) => {
     const response = await fetch(url + '?' + new URLSearchParams(params))
     const data = await response.json()
-
     return data
 }
+function get_tasks() {
+    // let user_id = tg.initDataUnsafe.user.id
+    return get(url, {user_id: 492323696}).then(
+        data => {return data.message}
+    )
+}
 
-// Call it with async:
-(async () => {
-    const data = await get(url, {
-        user_id: tg.initDataUnsafe.user.id,
+function addButtons(element){
+    const get_task = document.createElement('button');
+    get_task.textContent = 'Взять задачу'
+    element.appendChild(get_task);
+}
+
+function createDetailsTag(element = NaN){
+    get_tasks(url, {user_id: 492323696}).then(tasks_group => {
+        if (!tasks_group){
+            alert("У вас нет открытых задач")
+        }
+        else if (element){
+            tasks_group = {1: element}
+        }
+        for (const [key, value] of Object.entries(tasks_group)) {
+            console.log(value)
+            const details = document.createElement('details');
+            let par = document.createElement('p')
+            let summary = document.createElement('summary');
+            summary.textContent = value.task_name
+            par.textContent = `Статус задачи: ${value.status}`
+            details.appendChild(summary);
+            details.appendChild(par);
+            addButtons(details)
+            document.getElementById("task_list_id").appendChild(details);
+        }
     })
-
-    console.log(data)
-})()
-
-// Calling it with then:
-get(url, {
-    user_id: tg.initDataUnsafe.user.id,
-}).then(data => alert.log(data))
+}
+createDetailsTag()

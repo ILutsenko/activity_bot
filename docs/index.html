@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="ru">
   <head>
+    <meta charset="utf-8">
     <title>Activity Bot API</title>
       <link rel="stylesheet" href="css/app.css">
   </head>
   <body>
-    <div class="usercard" id="usercard"></div>
-    <div class="container">
-       <button class="button" id="task_button">Test button</button>
+    <div class="task_list" id="task_list_id">
+      <details>
+        <summary>Пробная задача</summary>
+      </details>
     </div>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script src="test.js"></script>
+    <div class="container">
+      <form id="form">
+        <label>Имя задачи</label>
+        <input type="text" name="text1" value="foo" />
+      </form>
+       <button class="button" id="task_button">Создать задачу</button>
+    </div>
+    <script src="practice.js"></script>
   </body>
 </html>
