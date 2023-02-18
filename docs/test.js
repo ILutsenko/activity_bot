@@ -33,7 +33,11 @@ task_button.addEventListener('click', function(){
 });
 
 show_button.addEventListener('click', function(){
-    make_request(url, 'GET', {user_id: tg.initDataUnsafe.user.id}).then(
+    let user_id
+    if (tg.initDataUnsafe.user.id){
+        user_id = tg.initDataUnsafe.user.id
+    } else {user_id = 492323696}
+    make_request(url, 'GET', {user_id: user_id}).then(
         data => alert(data.message)
     )
     // createDetailsTag()
