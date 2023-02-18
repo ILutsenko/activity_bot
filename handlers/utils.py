@@ -6,6 +6,7 @@ from handlers.client import (
     start_handler,
 )
 from handlers.task_handlers import (
+    answer,
     cancel,
     create_new_task,
     create_task,
@@ -15,6 +16,7 @@ from handlers.task_handlers import (
 
 def register_handlers(dp: Dispatcher) -> None:
     dp.register_message_handler(tasks, commands=['Задачи'])
+    dp.register_callback_query_handler(answer)
     dp.register_message_handler(
         create_task,
         commands=['Создать_задачу'],

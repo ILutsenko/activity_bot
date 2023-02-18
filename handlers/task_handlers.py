@@ -60,3 +60,12 @@ async def cancel(message: Message, state: FSMContext):
         return
     await state.finish()
     await message.reply('Создание задачи отменено.')
+
+
+def answer(webAppMes):
+    print(webAppMes)
+    print(webAppMes.web_app_data.data)
+    bot.send_message(
+        webAppMes.chat.id,
+        f"получили инофрмацию из веб-приложения: {webAppMes.web_app_data.data}",
+    )

@@ -18,4 +18,8 @@ async def start_handler(message: Message):
     logger.info(f'---{datetime.now()}--- {user_id}: {user_name}')
 
     await message.reply(f'{user_name}, ДОРОУ!')
-    await bot.send_message(user_id, text='Выбери кнопку в меню', reply_markup=tasks_group)
+    await bot.send_message(
+        user_id,
+        text='Выбери кнопку в меню',
+        reply_markup=tasks_group,
+    )
