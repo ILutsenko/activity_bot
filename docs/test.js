@@ -33,9 +33,10 @@ task_button.addEventListener('click', function(){
 });
 
 show_button.addEventListener('click', function(){
-    alert(tg.initDataUnsafe.user.id)
-    make_request(url, 'GET', {user_id: tg.initDataUnsafe.user.id}).then(data => console.log(data.message))
-    createDetailsTag()
+    make_request(url, 'GET', {user_id: tg.initDataUnsafe.user.id}).then(
+        data => alert(data.message)
+    )
+    // createDetailsTag()
 });
 
 function addButtons(element){
