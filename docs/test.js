@@ -4,8 +4,7 @@ let task_button = document.getElementById("task_button");
 
 
 task_button.addEventListener('click', function(){
-    alert('event_called')
-    const form = document.getElementById('form');
+    const form = tg.getElementById('form');
     const formData = new FormData(form);
     let task_name = formData.get('text1')
     post(`${url}/task`, {user_id: tg.initDataUnsafe.user.id, task_name: task_name})
