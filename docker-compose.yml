@@ -12,7 +12,7 @@ services:
     command: sh -c "python3 activity_bot/bot.py"
     depends_on:
       - database
-
+#
   swagger:
     container_name: swagger
     restart: always
@@ -23,7 +23,7 @@ services:
       - .:/usr/src/app
     command: sh -c "python3 api/run.py"
     ports:
-      - "80:80"
+      - "8005:8005"
 
   database:
     container_name: postgres
